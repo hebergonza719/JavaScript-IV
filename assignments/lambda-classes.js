@@ -44,8 +44,26 @@ class Instructor extends Person {
     console.log(`${student.name} receives a perfect score on ${subject}.`)
   }
 
-  randomSubAdd(student) {
-    
+  randomSub(student) {
+    let min = Math.ceil(1);
+    let max = Math.floor(student.grade - 1);
+    let randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+    let totalGrade = student.grade - randomNum;
+    console.log(`${student.name} started with ${student.grade} points.`);
+    console.log(`${this.name} has subtracted ${randomNum} points away from ${student.name}.`);
+    console.log(`Currently, ${student.name} has ${totalGrade} points.`);
+    student.grade = totalGrade;
+  }
+
+  randomAdd(student) {
+    let min = Math.ceil(1);
+    let max = Math.floor(100);
+    let randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+    let totalGrade = student.grade + randomNum;
+    console.log(`${student.name} started with ${student.grade} points.`);
+    console.log(`${this.name} has added ${randomNum} points to ${student.name}'s grade.`);
+    console.log(`Currently, ${student.name} has ${totalGrade} points.`);
+    student.grade = totalGrade;
   }
 }
 
@@ -157,22 +175,38 @@ const robert = new ProjectManager({
 });
 
 // Person class tests
+console.log("Test for Person class", `\n`);
 
 isabella.speak();
 andrea.speak();
 
 // Instructor class tests
+console.log(`\n`, "Test for Instructor class", `\n`);
 
 maria.demo("CSS");
 tony.grade(john, "CSS");
 
 // Student class tests
+console.log(`\n`, "Test for Student class", `\n`);
 
 john.prAssignment("html");
 paul.sprintChallenge("CSS");
 paul.listsSubjects();
 
 // Project Manager tests
+console.log(`\n`, "Test for Project Manager class", `\n`);
 
 joe.standUp("@webpt192");
 robert.debugsCode(john, 'CSS');
+
+// Stretch Challenge Test
+console.log(`\n`, "Test for Stretch Challenge");
+
+console.log(`\n`, "Random Sub", `\n`);
+maria.randomSub(paul);
+
+console.log(`\n`, "Random Add", `\n`);
+maria.randomAdd(john);
+
+console.log(`\n`, "Random Sub with Project Manager", `\n`);
+joe.randomSub(paul);
